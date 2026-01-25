@@ -18,6 +18,20 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  // Added mappings for camera height options
+  'rectangle.fill': 'crop-square',
+  'rectangle.split.3x1.fill': 'view-stream',
+  'square.fill': 'crop-square',
+  'rectangle.split.2x1.fill': 'crop-3-2',
+  // Added mappings for camera screen icons
+  'arrow.triangle.2.circlepath': 'flip-camera-android',
+  'bolt.fill': 'flash-on',
+  'bolt.slash.fill': 'flash-off',
+  'rectangle.compress.vertical': 'height',
+  'camera.fill': 'camera-alt',
+  // Added mappings for tab bar icons
+  'photo.on.rectangle.angled': 'photo-library',
+  'gear': 'settings',
 } as IconMapping;
 
 /**
@@ -30,12 +44,14 @@ export function IconSymbol({
   size = 24,
   color,
   style,
+  className = '',
 }: {
   name: IconSymbolName;
   size?: number;
   color: string | OpaqueColorValue;
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
+  className?: string;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} className={className} />;
 }

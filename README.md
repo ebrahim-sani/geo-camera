@@ -1,50 +1,96 @@
-# Welcome to your Expo app 👋
+# Geo-Camera App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native Expo app that captures photos with geolocation and timestamp information.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Camera with front/back toggle and flash
+- Location acquisition with fallback to last known location
+- Reverse geocoding to get human-readable addresses
+- Image stamping with location and time information
+- Gallery view to browse captured photos
+- Metadata storage with EXIF-like JSON files
+- Settings for customization
 
-   ```bash
-   npm install
-   ```
+## Screens
 
-2. Start the app
+1. **Camera Screen** - Main camera interface with capture button
+2. **Gallery Screen** - Grid view of captured photos with metadata
+3. **Settings Screen** - Configuration options for the app
 
-   ```bash
-   npx expo start
-   ```
+## Technical Implementation
 
-In the output, you'll find options to open the app in a
+### Dependencies
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- `expo-camera` - Camera functionality
+- `expo-location` - Geolocation services
+- `react-native-view-shot` - Image stamping capabilities
+- `expo-media-library` - Saving photos to device gallery
+- `expo-file-system` - File management
+- `expo-sharing` - Sharing functionality
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Key Components
 
-## Get a fresh project
+- `ImageStampOverlay` - Component for overlaying text on photos
+- `StampedImageView` - View for displaying stamped images
+- Image utilities for processing and saving stamped images
 
-When you're ready, run:
+### Permissions
+
+The app requests the following permissions:
+
+- Camera - To capture photos
+- Location - To add geolocation data to photos
+- Media Library - To save photos to the device gallery
+
+## Development
+
+### Prerequisites
+
+- Node.js
+- Expo CLI
+- iOS/Android simulator or device
+
+### Installation
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Running the App
 
-## Learn more
+```bash
+# Start the development server
+npx expo start
 
-To learn more about developing your project with Expo, look at the following resources:
+# Run on iOS simulator
+npx expo start --ios
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Run on Android emulator
+npx expo start --android
+```
 
-## Join the community
+## App Workflow
 
-Join our community of developers creating universal apps.
+1. User opens the app and grants camera and location permissions
+2. User takes a photo using the camera interface
+3. App captures the photo and immediately requests location
+4. Location is obtained (or falls back to last known)
+5. Reverse geocoding converts coordinates to address (if available)
+6. Image is stamped with location and timestamp information
+7. Stamped image is saved to the device gallery
+8. Metadata is saved as a JSON file
+9. User can view photos in the gallery with metadata details
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## File Naming Convention
+
+Photos are saved with the format:
+`YYYYMMDD_HHMMSS_Nlat_Elon.jpg`
+
+Metadata files use the same name with a `.json` extension.
+
+## Privacy
+
+- Location data is only used for stamping photos
+- All data is stored locally on the device
+- No data is uploaded unless explicitly shared by the user

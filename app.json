@@ -1,22 +1,40 @@
 {
   "expo": {
-    "name": "geo-camera",
+    "name": "GPS Snap",
     "slug": "geo-camera",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "geocamera",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "jsEngine": "hermes",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to take photos with location information.",
+        "NSLocationWhenInUseUsageDescription": "This app uses location to stamp your photos with place information."
+      },
+      "bundleIdentifier": "com.rozzstudio.geo-camera",
+      "dark": "./assets/icons/ios-icon-2.png",
+      "light": "./assets/icons/ios-icon-2.png",
+      "tinted": "./assets/icons/ios-icon-2.png",
+      "backgroundColor": "#065168"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/camera-adaptive-android.png",
+        "monochromeImage": "./assets/images/camera-adaptive-android.png",
+        "backgroundColor": "#065168"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE"
+      ],
+      "package": "com.rozzstudio.geocamera"
     },
     "web": {
       "bundler": "metro",
@@ -28,15 +46,22 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/splash-icon-android.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#065168"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8ea2a7cd-5134-40a8-a480-31fabf561ed0"
+      }
+    },
+    "owner": "ebrahim035"
   }
 }
